@@ -1,0 +1,39 @@
+---
+title: EBImage display widget demo
+author: Andrzej Oleś
+date: "January 17, 2017"
+output: html_document
+vignette: |
+  %\VignetteIndexEntry{EBImage display widget demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Static EBImage display
+
+```{r ebimage}
+library(EBImage)
+
+f = system.file("images", "sample-color.png", package="EBImage")
+x = readImage(f)
+
+display(x)
+```
+
+## Interactive display widget
+
+```{r displaywidget}
+library(displayWidget)
+
+displayWidget(x)
+```
+
+## Image stack
+
+```{r displaywidget2, echo=FALSE}
+displayWidget(readImage(system.file("images", "nuclei.tif", package="EBImage")))
+```
