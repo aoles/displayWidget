@@ -42,8 +42,6 @@
  background-color: #222222;
 }
 .ebimage-image {
- margin: 0;
- padding: 0;
  max-width: none;
  position: absolute;
  z-index: 2;

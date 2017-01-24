@@ -548,7 +548,7 @@ function Viewer(parent){
 		help.innerHTML = '<table class="ebimage-help-table"><tr><td colspan="3" class="ebimage-help-topic">Browsing</td></tr><tr><td colspan="3">Use toolbar buttons or the following keys to change between the frames:</td></tr><tr><td>Next frame</td><td class="ebimage-help-key">PAGE UP</td><td class="ebimage-help-key">&gt</td></tr><tr><td>Previous frame</td><td class="ebimage-help-key">PAGE DOWN</td><td class="ebimage-help-key">&lt</td></tr><tr><td>First frame</td><td class="ebimage-help-key">HOME</td><td class="ebimage-help-key">M</td></tr><tr><td>Last frame</td><td class="ebimage-help-key">END</td><td class="ebimage-help-key">?</td></tr><tr><td colspan="3" class="ebimage-help-topic">Zooming</td></tr><tr><td colspan="3">To zoom the image in/out use the mouse wheel, the toolbar buttons, or the following keyboard shortcuts:</td></tr><tr><td>Zoom in</td><td class="ebimage-help-key">+</td><td class="ebimage-help-key">x</td></tr><tr><td>Zoom out</td><td class="ebimage-help-key">-</td><td class="ebimage-help-key">z</td></tr><tr><td>Reset to 100%</td><td class="ebimage-help-key">BACKSPACE</td><td class="ebimage-help-key">R</td></tr><tr><td>Fit-in</td><td class="ebimage-help-key">SPACE</td><td class="ebimage-help-key">ENTER</td></tr><tr><td colspan="3" class="ebimage-help-topic">Panning</td></tr><tr><td colspan="3">To pan the image click on it and drag it with your mouse. Alternatively, use the arrow keys on your keyboard.</td></tr><tr><td colspan="3" class="ebimage-help-close">Press ESC or Q to close this window.</td></tr></table>'
 
 		// create image
-		image = createElement('img', 'image', canvas);
+		image = createElement('img', 'image ebimage', canvas);
 
 		// set up image
 		viewer.setFrame();
