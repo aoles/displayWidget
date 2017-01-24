@@ -478,26 +478,27 @@ function Viewer(parent){
 
 /* DOM elements creation */
 
-	createElement = function(type, id, className, parent) {
+	createElement = function(type, className, parent) {
 		var element = document.createElement(type);
-		element.id = id;
-		if(className!=null) element.className = className;
+		element.className = "ebimage-" + className;
 		parent.appendChild(element);
 		return element;
 	}
 
 	createButton = function(name, value, title, onclick, group) {
-		var button = createElement('button', 'button_'+name, null, group)
+		var button = createElement('button', "button", group);
+		button.className += " btn-" + name;
 		button.innerHTML = value;
 		button.title = title;
 		button.onclick = onclick;
 		button.disable = function(disable){this.disabled=disable; this.blur(); return this;};
-
 		return (buttons[name] = button);
 	}
 
 	createStatusField = function(name) {
-		return (status[name] = createElement('div', name, 'status', statusbar));
+	  var statusField = createElement('div', 'status ebimage', statusbar)
+	  statusField.className += " sts-" + name;
+		return (status[name] = statusField);
 	}
 
 /* Viewer initialization */
@@ -516,10 +517,10 @@ function Viewer(parent){
 
 
 		// create toolbar
-		toolbar = createElement('div', 'toolbar', null, body);
+		toolbar = createElement('div', 'toolbar ebimage', body);
 		// create button containers
-		navbuttons = createElement('div', 'navbuttons', 'buttons', toolbar);
-		zoombuttons = createElement('div', 'zoombuttons', 'buttons', toolbar);
+		navbuttons = createElement('div', 'buttons-nav ebimage', toolbar);
+		zoombuttons = createElement('div', 'buttons-zoom ebimage', toolbar);
 
 		// create navigation buttons
 		createButton('first','&#171;<br/>&nbsp;','First frame [HOME]/[m] ',viewer.firstFrame, navbuttons);
@@ -534,20 +535,20 @@ function Viewer(parent){
 		createButton('fit','&#8727;<br/>&nbsp;','Fit image [SPACE]/[ENTER]',viewer.autofitImage, zoombuttons);
 
 		// create canvas
-		canvas = createElement('div', 'canvas', null, body)
+		canvas = createElement('div', 'canvas ebimage', body)
 
 		//create statusbar
-		statusbar = createElement('div', 'statusbar', null, body);
+		statusbar = createElement('div', 'statusbar ebimage', body);
 
 		// create statusbar elements
 		createStatusField("Image"), createStatusField("Frame"), createStatusField("Zoom"), createStatusField("Position");
 
 		// create help
-		help = createElement('div', 'help', null, canvas)
-		help.innerHTML = '<table><tr><td colspan="3" class="topic">Browsing</td></tr><tr><td colspan="3">Use toolbar buttons or the following keys to change between the frames:</td></tr><tr><td>Next frame</td><td class="key">PAGE UP</td><td class="key">&gt</td></tr><tr><td>Previous frame</td><td class="key">PAGE DOWN</td><td class="key">&lt</td></tr><tr><td>First frame</td><td class="key">HOME</td><td class="key">M</td></tr><tr><td>Last frame</td><td class="key">END</td><td class="key">?</td></tr><tr><td colspan="3" class="topic">Zooming</td></tr><tr><td colspan="3">To zoom the image in/out use the mouse wheel, the toolbar buttons, or the following keyboard shortcuts:</td></tr><tr><td>Zoom in</td><td class="key">+</td><td class="key">x</td></tr><tr><td>Zoom out</td><td class="key">-</td><td class="key">z</td></tr><tr><td>Reset to 100%</td><td class="key">BACKSPACE</td><td class="key">R</td></tr><tr><td>Fit-in</td><td class="key">SPACE</td><td class="key">ENTER</td></tr><tr><td colspan="3" class="topic">Panning</td></tr><tr><td colspan="3">To pan the image click on it and drag it with your mouse. Alternatively, use the arrow keys on your keyboard.</td></tr><tr><td colspan="3" class="close">Press ESC or Q to close this window.</td></tr></table>'
+		help = createElement('div', 'help ebimage', canvas)
+		help.innerHTML = '<table class="ebimage-help-table"><tr><td colspan="3" class="ebimage-help-topic">Browsing</td></tr><tr><td colspan="3">Use toolbar buttons or the following keys to change between the frames:</td></tr><tr><td>Next frame</td><td class="ebimage-help-key">PAGE UP</td><td class="ebimage-help-key">&gt</td></tr><tr><td>Previous frame</td><td class="ebimage-help-key">PAGE DOWN</td><td class="ebimage-help-key">&lt</td></tr><tr><td>First frame</td><td class="ebimage-help-key">HOME</td><td class="ebimage-help-key">M</td></tr><tr><td>Last frame</td><td class="ebimage-help-key">END</td><td class="ebimage-help-key">?</td></tr><tr><td colspan="3" class="ebimage-help-topic">Zooming</td></tr><tr><td colspan="3">To zoom the image in/out use the mouse wheel, the toolbar buttons, or the following keyboard shortcuts:</td></tr><tr><td>Zoom in</td><td class="ebimage-help-key">+</td><td class="ebimage-help-key">x</td></tr><tr><td>Zoom out</td><td class="ebimage-help-key">-</td><td class="ebimage-help-key">z</td></tr><tr><td>Reset to 100%</td><td class="ebimage-help-key">BACKSPACE</td><td class="ebimage-help-key">R</td></tr><tr><td>Fit-in</td><td class="ebimage-help-key">SPACE</td><td class="ebimage-help-key">ENTER</td></tr><tr><td colspan="3" class="ebimage-help-topic">Panning</td></tr><tr><td colspan="3">To pan the image click on it and drag it with your mouse. Alternatively, use the arrow keys on your keyboard.</td></tr><tr><td colspan="3" class="ebimage-help-close">Press ESC or Q to close this window.</td></tr></table>'
 
 		// create image
-		image = createElement('img', 'ebimage', null, canvas);
+		image = createElement('img', 'image', canvas);
 
 		// set up image
 		viewer.setFrame();

@@ -5,22 +5,27 @@
     background-color:#dddddd;
     overflow: hidden;
    }
-   img {
-    image-rendering:optimizeSpeed;             /* Legal fallback                 */
-    image-rendering:-moz-crisp-edges;          /* Firefox                        */
-    image-rendering:-o-crisp-edges;            /* Opera                          */
-    image-rendering:-webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-    image-rendering:optimize-contrast;         /* CSS3 Proposed                  */
-    -ms-interpolation-mode:nearest-neighbor;   /* IE8+                           */
-   }
-   div {
+   .ebimage {
     display:block;
     margin:0px;
     padding:0px;
     border:0px;
     overflow:hidden;
    }
-   button {
+   .ebimage-toolbar{
+    overflow: inherit;
+    min-width:128px;
+   }
+   .ebimage-buttons-nav, .ebimage-buttons-zoom{
+    float:left;
+    width:50%;
+    min-width:128px;
+   }
+   .ebimage-buttons-zoom{
+    text-align:right;
+    margin-right:-1px;
+   }
+   .ebimage-button {
     font-size:20px;
     font-family:Arial,sans-serif;
     width:32px;
@@ -28,41 +33,36 @@
     line-height:100%;
     vertical-align:top;
    }
-   .buttons{
-    float:left;
-    width:50%;
-    min-width:128px;
-   }
-   #toolbar{
-    overflow: inherit;
-    min-width:128px;
-   }
-   #zoombuttons{
-    text-align:right;
-    margin-right:-1px;
-   }
-   #button_org{
+   .btn-org {
     font-size:14px;
    }
-   #canvas{
+   .ebimage-canvas{
     position:relative;
     z-index:1;
     background-color:#222222;
    }
-   #ebimage{
+   .ebimage-image{
+    margin: 0;
+    padding: 0;
     max-width: none;
     position:absolute;
     z-index:2;
     cursor:crosshair;
+    image-rendering:optimizeSpeed;             /* Legal fallback                 */
+    image-rendering:-moz-crisp-edges;          /* Firefox                        */
+    image-rendering:-o-crisp-edges;            /* Opera                          */
+    image-rendering:-webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering:optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode:nearest-neighbor;   /* IE8+                           */
    }
-   #statusbar, .status{
+   .ebimage-status{
     font-size:14px;
     font-family:"Lucida Console", Monaco, monospace;
     margin-right:10px;
     padding:1px;
     float:left;
    }
-   #help{
+   .ebimage-help{
     position:relative;
     margin:auto;
     top:50px;
@@ -73,21 +73,21 @@
     z-index:3;
     display:none;
    }
-   .key{
+   .ebimage-help-key{
     font-family:"Lucida Console", Monaco, monospace;
     font-weight:bold;
    }
-   .topic{
+   .ebimage-help-topic{
     font-size:14px;
     font-weight:bold;
     padding-top:5px;
    }
-   .close{
+   .ebimage-help-close{
     text-align:center;
     font-weight:bold;
     padding:5px;
    }
-   table{
+   .ebimage-help-table{
     background-color:white;
     opacity:0.8;
     border-radius:8px;

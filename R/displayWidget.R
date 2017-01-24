@@ -2,9 +2,15 @@
 #'
 #' Interactive image viewer
 #'
+#' @param x Image
+#' @param width Fixed width for widget (in css units). The default is NULL, which results in intelligent automatic sizing based on the widget's container.
+#' @param height Fixed height for widget (in css units). The default is NULL, which results in intelligent automatic sizing based on the widget's container.
+#' @param elementId Use an explicit element ID for the widget
+#'
 #' @importFrom htmlwidgets createWidget sizingPolicy
 #' @importFrom png writePNG
 #' @importFrom RCurl base64Encode
+#' @importFrom abind abind
 #' @import EBImage
 #'
 #' @export

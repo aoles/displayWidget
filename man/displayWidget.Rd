@@ -6,6 +6,15 @@
 \usage{
 displayWidget(x, width = NULL, height = NULL, elementId = NULL)
 }
+\arguments{
+\item{x}{Image}
+
+\item{width}{Fixed width for widget (in css units). The default is NULL, which results in intelligent automatic sizing based on the widget's container.}
+
+\item{height}{Fixed height for widget (in css units). The default is NULL, which results in intelligent automatic sizing based on the widget's container.}
+
+\item{elementId}{Use an explicit element ID for the widget}
+}
 \description{
 Interactive image viewer
 }
