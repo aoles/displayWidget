@@ -4,7 +4,8 @@
 \alias{displayWidget}
 \title{Display Widget}
 \usage{
-displayWidget(x, width = NULL, height = NULL, elementId = NULL)
+displayWidget(x, width = NULL, height = NULL, elementId = NULL,
+  embed = !interactive())
 }
 \arguments{
 \item{x}{Image}

@@ -8,13 +8,14 @@
 #' @param elementId Use an explicit element ID for the widget
 #'
 #' @importFrom htmlwidgets createWidget sizingPolicy
+#' @importFrom htmltools htmlDependency
 #' @importFrom png writePNG
 #' @importFrom RCurl base64Encode
 #' @importFrom abind abind
 #' @import EBImage
 #'
 #' @export
-displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL) {
+displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL, embed = !interactive()) {
   ## get image parameters
   d = dim(x)
   if ( length(d)==2L ) d = c(d, 1L)
@@ -32,8 +33,39 @@ displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL) {
   x = EBImage:::clipImage(x) ## clip the image and change storage mode to double
   x = transpose(x, coerce=TRUE)
 
-  data <- sapply(seq_len(nf), function(i) base64Encode(writePNG(EBImage:::.getFrame(x, i, 'render', colormode))))
-  data <- sprintf("data:image/png;base64,%s", data)
+  frames = seq_len(nf)
+  dependencies = NULL
+
+  if ( isTRUE(embed) ) {
+
+    data <- sapply(frames, function(i) base64Encode(writePNG(EBImage:::.getFrame(x, i, 'render', colormode))))
+    data <- sprintf("data:image/png;base64,%s", data)
+
+  } else {
+    tempDir = tempfile("",,"")
+    imageFile = tempfile("",tempDir,".png")
+
+    if(!dir.create(tempDir))
+      stop("Error creating temporary directory.")
+
+    basename = unlist(strsplit(imageFile, split=".", fixed=TRUE))
+    prefix   = basename[-length(basename)]
+    suffix   = basename[length(basename)]
+
+    files = file.path(tempDir, sprintf("frame-%d.png", frames, ".png"))
+
+    ## store image frames into individual files
+    for (i in frames)
+      writePNG(EBImage:::.getFrame(x, i, 'render', colormode), files[i])
+
+    dependencies = htmlDependency(
+      name = "images",
+      version = "0",
+      src = list(tempDir)
+    )
+
+    data = sprintf("lib/%s-%s/%s", dependencies$name, dependencies$version, basename(files))
+  }
 
   # forward options using x
   x = list(
@@ -50,7 +82,8 @@ displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL) {
     height = height,
     package = 'displayWidget',
     elementId = elementId,
-    sizingPolicy = sizingPolicy(padding = 0, browser.fill = TRUE)
+    sizingPolicy = sizingPolicy(padding = 0, browser.fill = TRUE),
+    dependencies = dependencies
   )
 }
 
