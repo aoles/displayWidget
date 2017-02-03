@@ -15,6 +15,8 @@ displayWidget(x, width = NULL, height = NULL, elementId = NULL,
 \item{height}{Fixed height for widget (in css units). The default is NULL, which results in intelligent automatic sizing based on the widget's container.}
 
 \item{elementId}{Use an explicit element ID for the widget}
+
+\item{embed}{Include images in the document as data URIs}
 }
 \description{
 Interactive image viewer

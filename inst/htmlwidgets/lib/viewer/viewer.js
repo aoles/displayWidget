@@ -501,9 +501,8 @@ function Viewer(parent){
 		return (status[name] = statusField);
 	}
 
-/* Viewer initialization */
-
-	this.init = function(img, width, height) {
+/* Set image */
+  this.reset = function(img, width, height) {
     if (!(img instanceof Array)) {
         data = [img];
       } else {
@@ -515,6 +514,15 @@ function Viewer(parent){
     originalWidth 	= width;
   	originalHeight	= height;
 
+  	// set up image
+		viewer.setFrame();
+		image.onload = viewer.resetCanvas();
+
+		viewer.updateStatusField("Image", originalWidth+'x'+originalHeight);
+  }
+
+/* Viewer initialization */
+	this.init = function() {
 
 		// create toolbar
 		toolbar = createElement('div', 'toolbar ebimage', body);
@@ -550,12 +558,6 @@ function Viewer(parent){
 		// create image
 		image = createElement('img', 'image ebimage', canvas);
 
-		// set up image
-		viewer.setFrame();
-		image.onload = viewer.resetCanvas();
-
-		viewer.updateStatusField("Image", originalWidth+'x'+originalHeight);
-
 		// set up mouse and keyboard actions
 		// use mousewheel for zooming
     setUpMouseWheelAction(viewer.onmousewheel);
@@ -578,5 +580,5 @@ function Viewer(parent){
 		//window.onresize = resetCanvas;
 	}
 
-	//this.onload = init();
+	this.onload = viewer.init();
 }
