@@ -6,7 +6,7 @@ library(displayWidget)
 ui <- fluidPage(
 
    # Application title
-   titlePanel("EBImage display widget"),
+   titlePanel("Display widget demo"),
 
    # Sidebar with a select input for the image
    sidebarLayout(
@@ -36,7 +36,7 @@ server <- function(input, output) {
    })
 
    output$display <- renderPlot({
-     display(img(), method="raster")
+     display(img(), method="raster", all=TRUE)
    })
 }
 
