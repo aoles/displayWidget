@@ -6,7 +6,7 @@
 \alias{renderDisplayWidget}
 \title{Shiny bindings for displayWidget}
 \usage{
-displayWidgetOutput(outputId, width = "100\%", height = "400px")
+displayWidgetOutput(outputId, width = "100\%", height = "500px")
 
 renderDisplayWidget(expr, env = parent.frame(), quoted = FALSE)
 }

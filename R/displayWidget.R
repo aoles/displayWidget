@@ -65,7 +65,13 @@ displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL, embe
       src = list(tempDir)
     )
 
-    data = sprintf("lib/%s-%s/%s", dependencies$name, dependencies$version, basename(files))
+    filePath = file.path(sprintf("%s-%s", dependencies$name, dependencies$version), basename(files))
+
+    ## set libdir unless run in shiny
+    if ( !isNamespaceLoaded("shiny") || is.null(getDefaultReactiveDomain()))
+      filePath = file.path("lib", filePath)
+
+    data = filePath
   }
 
   # forward options using x
@@ -105,7 +111,7 @@ displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL, embe
 #' @name displayWidget-shiny
 #'
 #' @export
-displayWidgetOutput <- function(outputId, width = '100%', height = '400px'){
+displayWidgetOutput <- function(outputId, width = '100%', height = '500px'){
   htmlwidgets::shinyWidgetOutput(outputId, 'displayWidget', width, height, package = 'displayWidget')
 }
 
