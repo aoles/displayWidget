@@ -28,7 +28,7 @@ displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL, embe
     imageData(x) = abind(x, Image(0, fd), along = 3L)
   }
 
-  nf = EBImage:::.numberOfFrames(x, type='render')
+  nf = numberOfFrames(x, type='render')
   colormode = colorMode(x)
 
   x = EBImage:::clipImage(x) ## clip the image and change storage mode to double
@@ -39,7 +39,7 @@ displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL, embe
 
   if ( isTRUE(embed) ) {
 
-    data <- sapply(frames, function(i) base64Encode(writePNG(EBImage:::.getFrame(x, i, 'render', colormode))))
+    data <- sapply(frames, function(i) base64Encode(writePNG(getFrame(x, i, 'render'))))
     data <- sprintf("data:image/png;base64,%s", data)
 
   } else {
@@ -57,7 +57,7 @@ displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL, embe
 
     ## store image frames into individual files
     for (i in frames)
-      writePNG(EBImage:::.getFrame(x, i, 'render', colormode), files[i])
+      writePNG(getFrame(x, i, 'render'), files[i])
 
     dependencies = htmlDependency(
       name = "images",

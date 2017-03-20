@@ -1,6 +1,6 @@
 Package: displayWidget
 Title: EBImage display widget
-Version: 0.0.5
+Version: 0.0.6
 Encoding: UTF-8
 Authors@R: person("Andrzej", "Oleś", email = "andrzej.oles@embl.de", role = c("aut", "cre"))
 Description: Proof-of-concept implementation of a htmlwidget for EBImage.
