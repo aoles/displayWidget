@@ -1,6 +1,6 @@
 Package: displayWidget
 Title: EBImage display widget
-Version: 0.0.6
+Version: 0.0.7
 Encoding: UTF-8
 Authors@R: person("Andrzej", "Oleś", email = "andrzej.oles@embl.de", role = c("aut", "cre"))
 Description: Proof-of-concept implementation of a htmlwidget for EBImage.
@@ -11,4 +11,4 @@ Imports:
 Suggests: knitr
 License: Artistic-2.0
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

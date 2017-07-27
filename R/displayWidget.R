@@ -32,7 +32,7 @@ displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL, embe
   colormode = colorMode(x)
 
   x = EBImage:::clipImage(x) ## clip the image and change storage mode to double
-  x = transpose(x, coerce=TRUE)
+  x = transpose(x)
 
   frames = seq_len(nf)
   dependencies = NULL
@@ -43,24 +43,19 @@ displayWidget <- function(x, width = NULL, height = NULL, elementId = NULL, embe
     data <- sprintf("data:image/png;base64,%s", data)
 
   } else {
-    tempDir = tempfile("",,"")
-    imageFile = tempfile("",tempDir,".png")
+    tempDir = tempfile("")
 
     if(!dir.create(tempDir))
       stop("Error creating temporary directory.")
 
-    basename = unlist(strsplit(imageFile, split=".", fixed=TRUE))
-    prefix   = basename[-length(basename)]
-    suffix   = basename[length(basename)]
-
-    files = file.path(tempDir, sprintf("frame-%d.png", frames, ".png"))
+    files = file.path(tempDir, sprintf("frame%.3d.png", frames, ".png"))
 
     ## store image frames into individual files
     for (i in frames)
       writePNG(getFrame(x, i, 'render'), files[i])
 
     dependencies = htmlDependency(
-      name = "images",
+      name = basename(tempDir),
       version = "0",
       src = list(tempDir)
     )

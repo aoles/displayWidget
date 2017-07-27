@@ -1,7 +1,6 @@
 ---
 title: EBImage display widget demo
 author: Andrzej Oleś
-date: "January 17, 2017"
 package: displayWidget
 output: BiocStyle::html_document2
 vignette: |

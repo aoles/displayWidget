@@ -21,4 +21,3 @@ displayWidget(x, width = NULL, height = NULL, elementId = NULL,
 \description{
 Interactive image viewer
 }
-
