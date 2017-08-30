@@ -1,3 +1,9 @@
+### :warning: DEPRECATED PACKAGE
+
+**The functionality provided by this package has been integrated into EBImage >= 4.19.3.**
+
+----
+
 # Installation
 
 Use the `biocLite` installation script in order to resolve dependency on the Bioconductor package *EBImage*.
